@@ -17,7 +17,7 @@ all_sprites_list = pygame.sprite.Group()
 square_size = 50
 square = pygame.sprite.Sprite()
 square.image = pygame.Surface((square_size, square_size))
-square.image.fill(constants.RED)
+square.image.fill(constants.COLORS["RED"])
 square.rect = pygame.Rect(*screen.get_rect().center, square_size, square_size)
 all_sprites_list.add(square)
 
@@ -27,10 +27,10 @@ vertical_border_height = constants.SCREEN["height"]
 vertical_border_width = 10
 
 border = Border()
-upper_border = border.create(horizontal_border_height, horizontal_border_width, constants.BORDER, 0, 0)
-bottom_border = border.create(horizontal_border_height, horizontal_border_width, constants.BORDER, 0, constants.SCREEN["height"] - horizontal_border_height)
-left_border = border.create(vertical_border_height, vertical_border_width, constants.BORDER, 0, 0)
-right_border = border.create(vertical_border_height, vertical_border_width, constants.BORDER, constants.SCREEN["width"] - vertical_border_width, 0)
+upper_border = border.create(horizontal_border_height, horizontal_border_width, constants.COLORS["BORDER"], 0, 0)
+bottom_border = border.create(horizontal_border_height, horizontal_border_width, constants.COLORS["BORDER"], 0, constants.SCREEN["height"] - horizontal_border_height)
+left_border = border.create(vertical_border_height, vertical_border_width, constants.COLORS["BORDER"], 0, 0)
+right_border = border.create(vertical_border_height, vertical_border_width, constants.COLORS["BORDER"], constants.SCREEN["width"] - vertical_border_width, 0)
 
 all_sprites_list.add(upper_border)
 all_sprites_list.add(bottom_border)
@@ -40,18 +40,18 @@ all_sprites_list.add(right_border)
 ## Drawing the layout
 # Inside rock
 rock_size = 10
-# rock = Sprite(constants.WHITE, rock_size, rock_size)
+# rock = Sprite(constants.COLORS["WHITE"], rock_size, rock_size)
 # rock.rect.x = 200
 # rock.rect.y = 200
 rock = pygame.sprite.Sprite()
 rock.image = pygame.Surface((rock_size, rock_size))
-rock.image.fill(constants.WHITE)
+rock.image.fill(constants.COLORS["WHITE"])
 rock.rect = pygame.Rect(200, 200, rock_size, rock_size)
 all_sprites_list.add(rock)
 
 # Chest Sprite
 chest_size = 50
-chest = Sprite(constants.GREEN, chest_size, chest_size)
+chest = Sprite(constants.COLORS["GREEN"], chest_size, chest_size)
 chest.rect.x = 50
 chest.rect.y = 50
 all_sprites_list.add(chest)
@@ -102,14 +102,14 @@ while running:
             ajust_collision(floor_objects=[chest, rock], axis="y", increment_value=-1)
 
     # Fill the screen with black color
-    screen.fill(constants.BLACK)
+    screen.fill(constants.COLORS["BLACK"])
 
     # Draw the red square
     # pygame.draw.rect(screen, RED, (square_x, square_y, square_size, square_size))
     all_sprites_list.draw(screen)
 
     # Write square position
-    # text = font.render(f"X: {screen.get_rect().center}", True, constants.WHITE, constants.BLACK)
+    # text = font.render(f"X: {screen.get_rect().center}", True, constants.COLORS["WHITE"], constants.COLORS["BLACK"])
     # textRect = text.get_rect()
     # textRect.center = (constants.SCREEN["height"] // 2, constants.SCREEN["width"] // 2)
     # screen.blit(text, textRect)
@@ -120,9 +120,9 @@ while running:
         clicked_sprites = [s for s in all_sprites_list if s.rect.collidepoint(pos)]
 
         if len(clicked_sprites) > 0:
-            click_text = font.render("CLICKED", True, constants.WHITE, constants.BLACK)
+            click_text = font.render("CLICKED", True, constants.COLORS["WHITE"], constants.COLORS["BLACK"])
         else:
-            click_text = font.render("NOT CLICKED", True, constants.WHITE, constants.BLACK)
+            click_text = font.render("NOT CLICKED", True, constants.COLORS["WHITE"], constants.COLORS["BLACK"])
         
         click_textRect = click_text.get_rect()
         click_textRect.center = (constants.SCREEN["height"] // 2, constants.SCREEN["width"] // 2)
